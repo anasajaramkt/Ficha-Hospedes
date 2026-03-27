@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Hóspede / Guest Registration</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9ecef; padding: 20px; color: #333; }
+        .container { max-width: 650px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: auto; }
+        h2 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; }
+        .section-title { background: #f8f9fa; padding: 10px; margin-top: 25px; font-weight: bold; border-left: 4px solid #0056b3; }
+        label { display: block; margin-top: 15px; font-weight: 600; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        input:focus { border-color: #0056b3; outline: none; box-shadow: 0 0 5px rgba(0,86,179,0.2); }
+        button { background-color: #28a745; color: white; border: none; padding: 18px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        button:hover { background-color: #218838; }
+        .footer-text { font-size: 12px; color: #6c757d; margin-top: 25px; text-align: center; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Ficha de Hóspede <br><small style="font-size: 0.6em; color: #666;">Guest Registration Form</small></h2>
+    
+    <form action="https://formsubmit.co/seu-email@exemplo.com" method="POST">
+        
+        <input type="hidden" name="_subject" value="Novo Registro de Hóspede Recebido!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="section-title">Dados Pessoais / Personal Details</div>
+
+        <label>Nome Completo / Full Name:</label>
+        <input type="text" name="Nome" required>
+
+        <label>E-mail:</label>
+        <input type="email" name="Email_Hospede" placeholder="Para enviarmos a confirmação" required>
+
+        <label>Nacionalidade / Nationality:</label>
+        <input type="text" name="Nacionalidade" required>
+
+        <label>Nº Documento (RG ou Passaporte) / ID or Passport Number:</label>
+        <input type="text" name="Documento" required>
+
+        <label>Data de Nascimento / Date of Birth:</label>
+        <input type="date" name="Data_Nascimento" required>
+
+        <div class="section-title">Endereço e Contato / Address & Contact</div>
+
+        <label>Morada Completa (Rua, Cidade, País) / Home Address:</label>
+        <textarea name="Endereco" rows="3" required placeholder="Ex: Rua das Flores 123, Lisboa, Portugal"></textarea>
+
+        <label>Telemóvel / Phone Number (com código do país):</label>
+        <input type="tel" name="Telefone" placeholder="+351 9xx xxx xxx" required>
+
+        <div class="section-title">Detalhes da Estadia / Stay Details</div>
+
+        <div style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <label>Check-in:</label>
+                <input type="date" name="CheckIn" required>
+            </div>
+            <div style="flex: 1;">
+                <label>Check-out:</label>
+                <input type="date" name="CheckOut" required>
+            </div>
+        </div>
+
+        <button type="submit">Enviar Registro / Submit Registration</button>
+
+        <div class="footer-text">
+            Ao enviar, os seus dados serão processados apenas para fins de registro obrigatório de alojamento local.<br>
+            <em>Your data is processed only for mandatory local accommodation registration purposes.</em>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
