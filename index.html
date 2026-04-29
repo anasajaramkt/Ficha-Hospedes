@@ -76,8 +76,9 @@
         </div>
 
         <div class="privacy-note">
-            Conforme requisitos legais do SEF/AIMA.<br>
-            <em>According to legal requirements for local accommodation.</em>
+            <strong>Privacidade / Privacy:</strong><br>
+            Os dados recolhidos destinam-se exclusivamente ao registo legal (SEF/AIMA) e não serão partilhados para outros fins.<br>
+            <em>Data collected is exclusively for legal registration (SEF/AIMA) and will not be shared for other purposes.</em>
         </div>
 
         <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro / Submit</button>
@@ -96,7 +97,6 @@
         const form = document.getElementById('form-container');
         const sucesso = document.getElementById('mensagem-sucesso');
 
-        // Validação básica de campos vazios
         const ids = ['nome', 'email', 'nacionalidade', 'data_nasc', 'documento', 'pais_emissao', 'validade_doc', 'morada', 'checkin', 'checkout'];
         for (let id of ids) {
             if (!document.getElementById(id).value) {
