@@ -1,97 +1,304 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Hóspede / Guest Registration</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
-        .container { max-width: 650px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: auto; }
-        h2 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; text-align: center; }
-        .section-title { background: #f8f9fa; padding: 10px; margin-top: 25px; font-weight: bold; border-left: 4px solid #0056b3; font-size: 15px; }
-        label { display: block; margin-top: 15px; font-weight: 600; font-size: 14px; }
-        input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        .flex-container { display: flex; gap: 15px; }
-        .flex-item { flex: 1; }
-        button { background-color: #28a745; color: white; border: none; padding: 18px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        button:hover { background-color: #218838; }
-        .privacy-note { font-size: 12px; color: #666; margin-top: 20px; line-height: 1.4; padding: 10px; background: #fffde7; border-radius: 5px; border: 1px solid #fff59d; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: auto; }
+        h2 { color: #0056b3; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .section-title { background: #f8f9fa; padding: 8px; margin-top: 20px; font-weight: bold; border-left: 4px solid #0056b3; }
+        label { display: block; margin-top: 12px; font-weight: 600; font-size: 14px; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .flex { display: flex; gap: 10px; }
+        button { background-color: #28a745; color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        button:disabled { background-color: #ccc; }
+        #mensagem { display: none; text-align: center; padding: 20px; color: #155724; background: #d4edda; margin-top: 20px; border-radius: 6px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Ficha de Hóspede <br><small style="font-size: 0.6em; color: #666;">Guest Registration Form</small></h2>
+<div class="container" id="form-container">
+    <h2>Ficha de Hóspede</h2>
     
-    <form action="https://formsubmit.co/seu-email@exemplo.com" method="POST">
-        
-        <input type="hidden" name="_subject" value="Novo Registro de Hóspede Recebido!">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
+    <div class="section-title">Dados Pessoais</div>
+    <label>Nome Completo:</label>
+    <input type="text" id="nome" required>
+    
+    <label>E-mail:</label>
+    <input type="email" id="email" required>
 
-        <div class="section-title">Dados Pessoais / Personal Details</div>
+    <div class="flex">
+        <div style="flex:1"><label>Nacionalidade:</label><input type="text" id="nacionalidade" required></div>
+        <div style="flex:1"><label>Data Nascimento:</label><input type="date" id="data_nasc" required></div>
+    </div>
 
-        <label>Nome Completo / Full Name:</label>
-        <input type="text" name="Nome" required>
+    <div class="section-title">Identificação</div>
+    <label>Nº Documento (CC/Passaporte):</label>
+    <input type="text" id="documento" required>
 
-        <label>E-mail:</label>
-        <input type="email" name="Email_Hospede" required>
+    <div class="flex">
+        <div style="flex:1"><label>País Emissão:</label><input type="text" id="pais_emissao" required></div>
+        <div style="flex:1"><label>Validade:</label><input type="date" id="validade_doc" required></div>
+    </div>
 
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>Nacionalidade / Nationality:</label>
-                <input type="text" name="Nacionalidade" required>
-            </div>
-            <div class="flex-item">
-                <label>Data de Nascimento / Birth:</label>
-                <input type="date" name="Data_Nascimento" required>
-            </div>
-        </div>
+    <div class="section-title">Residência e Estadia</div>
+    <label>Morada de Residência:</label>
+    <textarea id="morada" rows="2" required></textarea>
 
-        <div class="section-title">Documento de Identificação / ID Details</div>
+    <div class="flex">
+        <div style="flex:1"><label>Check-in:</label><input type="date" id="checkin" required></div>
+        <div style="flex:1"><label>Check-out:</label><input type="date" id="checkout" required></div>
+    </div>
 
-        <label>Nº Documento (CC ou Passaporte) / ID Number:</label>
-        <input type="text" name="Documento" required>
-
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>País de Emissão / Issuing Country:</label>
-                <input type="text" name="Pais_Emissao" required>
-            </div>
-            <div class="flex-item">
-                <label>Data de Validade / Expiry Date:</label>
-                <input type="date" name="Validade_Documento" required>
-            </div>
-        </div>
-
-        <div class="section-title">Morada de Residência Permanente / Home Address</div>
-
-        <label>Morada Completa (Rua, Cidade, País) / Full Address:</label>
-        <textarea name="Morada_Permanente" rows="2" required placeholder="A morada onde vive habitualmente no seu país de origem"></textarea>
-
-        <div class="section-title">Período da Estadia no AL / Stay Dates</div>
-
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>Data de Chegada / Check-in:</label>
-                <input type="date" name="CheckIn_no_AL" required>
-            </div>
-            <div class="flex-item">
-                <label>Data de Saída / Check-out:</label>
-                <input type="date" name="CheckOut_no_AL" required>
-            </div>
-        </div>
-
-        <div class="privacy-note">
-            <strong>Privacidade / Privacy:</strong><br>
-            Os dados recolhidos são obrigatórios por lei (SEF/AIMA) e destinam-se apenas ao registo legal da sua estadia. Não serão usados para fins comerciais.<br>
-            <em>The data collected is mandatory by law for registration with authorities. It will not be used for commercial purposes.</em>
-        </div>
-
-        <button type="submit">Enviar Registro / Submit Registration</button>
-
-    </form>
+    <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro</button>
 </div>
+
+<div id="mensagem">
+    <h3>✅ Enviado com Sucesso!</h3>
+    <p>Obrigado. Os seus dados foram registados.</p>
+</div>
+
+<script>
+    function submitForm() {
+        const btn = document.getElementById('btnEnviar');
+        btn.disabled = true;
+        btn.innerText = "A enviar...";
+
+        const data = {
+            nome: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            nacionalidade: document.getElementById('nacionalidade').value,
+            data_nasc: document.getElementById('data_nasc').value,
+            documento: document.getElementById('documento').value,
+            pais_emissao: document.getElementById('pais_emissao').value,
+            validade_doc: document.getElementById('validade_doc').value,
+            morada: document.getElementById('morada').value,
+            checkin: document.getElementById('checkin').value,
+            checkout: document.getElementById('checkout').value
+        };
+
+        // COLE O SEU URL DO GOOGLE ABAIXO
+        const url = <!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Hóspede / Guest Registration</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: auto; }
+        h2 { color: #0056b3; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .section-title { background: #f8f9fa; padding: 8px; margin-top: 20px; font-weight: bold; border-left: 4px solid #0056b3; }
+        label { display: block; margin-top: 12px; font-weight: 600; font-size: 14px; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .flex { display: flex; gap: 10px; }
+        button { background-color: #28a745; color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        button:disabled { background-color: #ccc; }
+        #mensagem { display: none; text-align: center; padding: 20px; color: #155724; background: #d4edda; margin-top: 20px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="form-container">
+    <h2>Ficha de Hóspede</h2>
+    
+    <div class="section-title">Dados Pessoais</div>
+    <label>Nome Completo:</label>
+    <input type="text" id="nome" required>
+    
+    <label>E-mail:</label>
+    <input type="email" id="email" required>
+
+    <div class="flex">
+        <div style="flex:1"><label>Nacionalidade:</label><input type="text" id="nacionalidade" required></div>
+        <div style="flex:1"><label>Data Nascimento:</label><input type="date" id="data_nasc" required></div>
+    </div>
+
+    <div class="section-title">Identificação</div>
+    <label>Nº Documento (CC/Passaporte):</label>
+    <input type="text" id="documento" required>
+
+    <div class="flex">
+        <div style="flex:1"><label>País Emissão:</label><input type="text" id="pais_emissao" required></div>
+        <div style="flex:1"><label>Validade:</label><input type="date" id="validade_doc" required></div>
+    </div>
+
+    <div class="section-title">Residência e Estadia</div>
+    <label>Morada de Residência:</label>
+    <textarea id="morada" rows="2" required></textarea>
+
+    <div class="flex">
+        <div style="flex:1"><label>Check-in:</label><input type="date" id="checkin" required></div>
+        <div style="flex:1"><label>Check-out:</label><input type="date" id="checkout" required></div>
+    </div>
+
+    <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro</button>
+</div>
+
+<div id="mensagem">
+    <h3>✅ Enviado com Sucesso!</h3>
+    <p>Obrigado. Os seus dados foram registados.</p>
+</div>
+
+<script>
+    function submitForm() {
+        const btn = document.getElementById('btnEnviar');
+        btn.disabled = true;
+        btn.innerText = "A enviar...";
+
+        const data = {
+            nome: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            nacionalidade: document.getElementById('nacionalidade').value,
+            data_nasc: document.getElementById('data_nasc').value,
+            documento: document.getElementById('documento').value,
+            pais_emissao: document.getElementById('pais_emissao').value,
+            validade_doc: document.getElementById('validade_doc').value,
+            morada: document.getElementById('morada').value,
+            checkin: document.getElementById('checkin').value,
+            checkout: document.getElementById('checkout').value
+        };
+
+        // COLE O SEU URL DO GOOGLE ABAIXO
+        const url = <!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Hóspede / Guest Registration</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin: auto; }
+        h2 { color: #0056b3; text-align: center; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .section-title { background: #f8f9fa; padding: 8px; margin-top: 20px; font-weight: bold; border-left: 4px solid #0056b3; }
+        label { display: block; margin-top: 12px; font-weight: 600; font-size: 14px; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .flex { display: flex; gap: 10px; }
+        button { background-color: #28a745; color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        button:disabled { background-color: #ccc; }
+        #mensagem { display: none; text-align: center; padding: 20px; color: #155724; background: #d4edda; margin-top: 20px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="form-container">
+    <h2>Ficha de Hóspede</h2>
+    
+    <div class="section-title">Dados Pessoais</div>
+    <label>Nome Completo:</label>
+    <input type="text" id="nome" required>
+    
+    <label>E-mail:</label>
+    <input type="email" id="email" required>
+
+    <div class="flex">
+        <div style="flex:1"><label>Nacionalidade:</label><input type="text" id="nacionalidade" required></div>
+        <div style="flex:1"><label>Data Nascimento:</label><input type="date" id="data_nasc" required></div>
+    </div>
+
+    <div class="section-title">Identificação</div>
+    <label>Nº Documento (CC/Passaporte):</label>
+    <input type="text" id="documento" required>
+
+    <div class="flex">
+        <div style="flex:1"><label>País Emissão:</label><input type="text" id="pais_emissao" required></div>
+        <div style="flex:1"><label>Validade:</label><input type="date" id="validade_doc" required></div>
+    </div>
+
+    <div class="section-title">Residência e Estadia</div>
+    <label>Morada de Residência:</label>
+    <textarea id="morada" rows="2" required></textarea>
+
+    <div class="flex">
+        <div style="flex:1"><label>Check-in:</label><input type="date" id="checkin" required></div>
+        <div style="flex:1"><label>Check-out:</label><input type="date" id="checkout" required></div>
+    </div>
+
+    <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro</button>
+</div>
+
+<div id="mensagem">
+    <h3>✅ Enviado com Sucesso!</h3>
+    <p>Obrigado. Os seus dados foram registados.</p>
+</div>
+
+<script>
+    function submitForm() {
+        const btn = document.getElementById('btnEnviar');
+        btn.disabled = true;
+        btn.innerText = "A enviar...";
+
+        const data = {
+            nome: document.getElementById('nome').value,
+            email: document.getElementById('email').value,
+            nacionalidade: document.getElementById('nacionalidade').value,
+            data_nasc: document.getElementById('data_nasc').value,
+            documento: document.getElementById('documento').value,
+            pais_emissao: document.getElementById('pais_emissao').value,
+            validade_doc: document.getElementById('validade_doc').value,
+            morada: document.getElementById('morada').value,
+            checkin: document.getElementById('checkin').value,
+            checkout: document.getElementById('checkout').value
+        };
+
+        // COLE O SEU URL DO GOOGLE ABAIXO
+        const url = https://script.google.com/macros/s/AKfycbwKFELO9Et-WNlR5AwyCz7b-P7283qm5gtzZjfScuwLEaDpXjcS4q1vx3WNw5cNzwAI/exec;
+
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            body: JSON.stringify(data)
+        }).then(() => {
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('mensagem').style.display = 'block';
+        }).catch(err => {
+            alert('Erro ao enviar. Tente novamente.');
+            btn.disabled = false;
+            btn.innerText = "Enviar Registro";
+        });
+    }
+</script>
+
+</body>
+</html>;
+
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            body: JSON.stringify(data)
+        }).then(() => {
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('mensagem').style.display = 'block';
+        }).catch(err => {
+            alert('Erro ao enviar. Tente novamente.');
+            btn.disabled = false;
+            btn.innerText = "Enviar Registro";
+        });
+    }
+</script>
+
+</body>
+</html>;
+
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            body: JSON.stringify(data)
+        }).then(() => {
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('mensagem').style.display = 'block';
+        }).catch(err => {
+            alert('Erro ao enviar. Tente novamente.');
+            btn.disabled = false;
+            btn.innerText = "Enviar Registro";
+        });
+    }
+</script>
 
 </body>
 </html>
