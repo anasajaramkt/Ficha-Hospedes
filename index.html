@@ -11,7 +11,8 @@
         .section-title { background: #f8f9fa; padding: 10px; margin-top: 25px; font-weight: bold; border-left: 4px solid #0056b3; }
         label { display: block; margin-top: 15px; font-weight: 600; font-size: 14px; }
         input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        input:focus { border-color: #0056b3; outline: none; box-shadow: 0 0 5px rgba(0,86,179,0.2); }
+        .flex-container { display: flex; gap: 15px; }
+        .flex-item { flex: 1; }
         button { background-color: #28a745; color: white; border: none; padding: 18px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
         button:hover { background-color: #218838; }
         .footer-text { font-size: 12px; color: #6c757d; margin-top: 25px; text-align: center; line-height: 1.5; }
@@ -24,7 +25,7 @@
     
     <form action="https://formsubmit.co/info.riaendlesssouth@gmail.com" method="POST">
         
-        <input type="hidden" name="_subject" value="Novo Registro de Hóspede Recebido!">
+        <input type="hidden" name="_subject" value="Novo Registro de Hóspede!">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
 
@@ -34,43 +35,56 @@
         <input type="text" name="Nome" required>
 
         <label>E-mail:</label>
-        <input type="email" name="Email_Hospede" placeholder="Para enviarmos a confirmação" required>
+        <input type="email" name="Email_Hospede" required>
 
-        <label>Nacionalidade / Nationality:</label>
-        <input type="text" name="Nacionalidade" required>
+        <div class="flex-container">
+            <div class="flex-item">
+                <label>Nacionalidade / Nationality:</label>
+                <input type="text" name="Nacionalidade" required>
+            </div>
+            <div class="flex-item">
+                <label>Data de Nascimento / Birth:</label>
+                <input type="date" name="Data_Nascimento" required>
+            </div>
+        </div>
 
-        <label>Nº Documento (CC ou Passaporte) / ID or Passport Number:</label>
+        <div class="section-title">Documento de Identificação / ID Details</div>
+
+        <label>Nº Documento (CC ou Passaporte) / ID Number:</label>
         <input type="text" name="Documento" required>
 
-        <label>Data de Nascimento / Date of Birth:</label>
-        <input type="date" name="Data_Nascimento" required>
+        <div class="flex-container">
+            <div class="flex-item">
+                <label>País de Emissão / Country:</label>
+                <input type="text" name="Pais_Emissao" required>
+            </div>
+            <div class="flex-item">
+                <label>Validade / Expiry Date:</label>
+                <input type="date" name="Validade_Doc" required>
+            </div>
+        </div>
 
-        <div class="section-title">Endereço e Contato / Address & Contact</div>
+        <div class="section-title">Estadia e Endereço / Stay & Address</div>
 
-        <label>Morada Completa (Rua, Cidade, País) / Home Address:</label>
-        <textarea name="Endereco" rows="3" required placeholder="Ex: Rua das Flores 123, Lisboa, Portugal"></textarea>
+        <label>Morada de Residência / Home Address:</label>
+        <textarea name="Endereco" rows="2" required></textarea>
 
-        <label>Telemóvel / Phone Number (com código do país):</label>
-        <input type="tel" name="Telefone" placeholder="+351 9xx xxx xxx" required>
-
-        <div class="section-title">Detalhes da Estadia / Stay Details</div>
-
-        <div style="display: flex; gap: 15px;">
-            <div style="flex: 1;">
+        <div class="flex-container">
+            <div class="flex-item">
                 <label>Check-in:</label>
                 <input type="date" name="CheckIn" required>
             </div>
-            <div style="flex: 1;">
+            <div class="flex-item">
                 <label>Check-out:</label>
                 <input type="date" name="CheckOut" required>
             </div>
         </div>
 
-        <button type="submit">Enviar Registro / Submit Registration</button>
+        <button type="submit">Enviar Registro / Submit</button>
 
         <div class="footer-text">
-            Ao enviar, os seus dados serão processados apenas para fins de registro obrigatório de alojamento local.<br>
-            <em>Your data is processed only for mandatory local accommodation registration purposes.</em>
+            Conforme requisitos legais do SEF/AIMA. <br>
+            <em>According to legal requirements for local accommodation.</em>
         </div>
     </form>
 </div>
