@@ -17,7 +17,7 @@
         button:hover { background-color: #218838; }
         button:disabled { background-color: #ccc; cursor: not-allowed; }
         #mensagem-sucesso { display: none; text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 12px; border: 1px solid #c3e6cb; margin-top: 20px; }
-        .privacy-note { font-size: 12px; color: #666; margin-top: 20px; line-height: 1.4; padding: 10px; background: #fffde7; border-radius: 5px; border: 1px solid #fff59d; }
+        .privacy-note { font-size: 13px; color: #555; margin-top: 25px; line-height: 1.5; padding: 12px; background: #fdfdfd; border: 1px solid #eee; border-radius: 6px; }
     </style>
 </head>
 <body>
@@ -60,8 +60,8 @@
         </div>
 
         <div class="section-title">Morada de Residência Permanente / Home Address</div>
-        <label>Morada Completa (Rua, Cidade, País) / Full Address:</label>
-        <textarea id="morada" rows="2" required placeholder="A morada onde vive habitualmente no seu país de origem"></textarea>
+        <label>Morada Completa / Full Address:</label>
+        <textarea id="morada" rows="2" required></textarea>
 
         <div class="section-title">Período da Estadia no AL / Stay Dates</div>
         <div class="flex-container">
@@ -76,8 +76,8 @@
         </div>
 
         <div class="privacy-note">
-            <strong>Privacidade / Privacy:</strong><br>
-            Os dados recolhidos são obrigatórios por lei (SEF/AIMA) e destinam-se apenas ao registo legal da sua estadia.
+            Conforme requisitos legais do SEF/AIMA.<br>
+            <em>According to legal requirements for local accommodation.</em>
         </div>
 
         <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro / Submit</button>
@@ -96,9 +96,9 @@
         const form = document.getElementById('form-container');
         const sucesso = document.getElementById('mensagem-sucesso');
 
-        // Validação básica
-        const campos = ['nome', 'email', 'nacionalidade', 'data_nasc', 'documento', 'pais_emissao', 'validade_doc', 'morada', 'checkin', 'checkout'];
-        for (let id of campos) {
+        // Validação básica de campos vazios
+        const ids = ['nome', 'email', 'nacionalidade', 'data_nasc', 'documento', 'pais_emissao', 'validade_doc', 'morada', 'checkin', 'checkout'];
+        for (let id of ids) {
             if (!document.getElementById(id).value) {
                 alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
@@ -133,7 +133,7 @@
             sucesso.style.display = 'block';
             window.scrollTo(0,0);
         }).catch(err => {
-            alert('Erro ao enviar. Verifique a sua ligação à internet.');
+            alert('Erro ao enviar. Verifique a sua ligação.');
             btn.disabled = false;
             btn.innerText = "Enviar Registro / Submit";
         });
