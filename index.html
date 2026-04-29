@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="section-title">Identificação / ID Details</div>
+        <div class="section-title">Documento de Identificação / ID Details</div>
         <label>Nº Documento (CC ou Passaporte) / ID Number:</label>
         <input type="text" id="documento" required>
 
@@ -59,23 +59,25 @@
             </div>
         </div>
 
-        <div class="section-title">Morada e Estadia / Address & Stay</div>
-        <label>Morada de Residência / Home Address:</label>
-        <textarea id="morada" rows="2" required></textarea>
+        <div class="section-title">Morada de Residência Permanente / Home Address</div>
+        <label>Morada Completa (Rua, Cidade, País) / Full Address:</label>
+        <textarea id="morada" rows="2" required placeholder="A morada onde vive habitualmente no seu país de origem"></textarea>
 
+        <div class="section-title">Período da Estadia no AL / Stay Dates</div>
         <div class="flex-container">
             <div class="flex-item">
-                <label>Check-in:</label>
+                <label>Data de Chegada / Check-in:</label>
                 <input type="date" id="checkin" required>
             </div>
             <div class="flex-item">
-                <label>Check-out:</label>
+                <label>Data de Saída / Check-out:</label>
                 <input type="date" id="checkout" required>
             </div>
         </div>
 
         <div class="privacy-note">
-            <strong>Privacidade / Privacy:</strong> Os dados são recolhidos para fins legais (SEF/AIMA).
+            <strong>Privacidade / Privacy:</strong><br>
+            Os dados recolhidos são obrigatórios por lei (SEF/AIMA) e destinam-se apenas ao registo legal da sua estadia.
         </div>
 
         <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro / Submit</button>
@@ -84,7 +86,8 @@
 
 <div id="mensagem-sucesso" class="container">
     <h2>✅ Enviado! / Success!</h2>
-    <p>Os seus dados foram registados com sucesso.</p>
+    <p>Os seus dados foram registados com sucesso na nossa base de dados.</p>
+    <p><em>Your data has been successfully registered. Thank you!</em></p>
 </div>
 
 <script>
@@ -93,8 +96,17 @@
         const form = document.getElementById('form-container');
         const sucesso = document.getElementById('mensagem-sucesso');
 
+        // Validação básica
+        const campos = ['nome', 'email', 'nacionalidade', 'data_nasc', 'documento', 'pais_emissao', 'validade_doc', 'morada', 'checkin', 'checkout'];
+        for (let id of campos) {
+            if (!document.getElementById(id).value) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+        }
+
         btn.disabled = true;
-        btn.innerText = "A enviar...";
+        btn.innerText = "A enviar... / Sending...";
 
         const data = {
             nome: document.getElementById('nome').value,
@@ -119,10 +131,11 @@
         }).then(() => {
             form.style.display = 'none';
             sucesso.style.display = 'block';
+            window.scrollTo(0,0);
         }).catch(err => {
-            alert('Erro ao enviar.');
+            alert('Erro ao enviar. Verifique a sua ligação à internet.');
             btn.disabled = false;
-            btn.innerText = "Enviar Registro";
+            btn.innerText = "Enviar Registro / Submit";
         });
     }
 </script>
