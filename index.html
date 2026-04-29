@@ -75,7 +75,7 @@
         </div>
 
         <div class="privacy-note">
-            <strong>Privacidade / Privacy:</strong> Os dados são obrigatórios por lei (SEF/AIMA).
+            <strong>Privacidade / Privacy:</strong> Os dados são recolhidos para fins legais (SEF/AIMA).
         </div>
 
         <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro / Submit</button>
@@ -84,8 +84,7 @@
 
 <div id="mensagem-sucesso" class="container">
     <h2>✅ Enviado! / Success!</h2>
-    <p>Os seus dados foram registados com sucesso na nossa base de dados.</p>
-    <p><em>Your data has been successfully registered.</em></p>
+    <p>Os seus dados foram registados com sucesso.</p>
 </div>
 
 <script>
@@ -94,14 +93,8 @@
         const form = document.getElementById('form-container');
         const sucesso = document.getElementById('mensagem-sucesso');
 
-        // Validação simples
-        if(!document.getElementById('nome').value || !document.getElementById('documento').value) {
-            alert('Por favor, preencha os campos obrigatórios.');
-            return;
-        }
-
         btn.disabled = true;
-        btn.innerText = "A enviar... / Sending...";
+        btn.innerText = "A enviar...";
 
         const data = {
             nome: document.getElementById('nome').value,
@@ -127,7 +120,7 @@
             form.style.display = 'none';
             sucesso.style.display = 'block';
         }).catch(err => {
-            alert('Erro ao enviar. Verifique a ligação.');
+            alert('Erro ao enviar.');
             btn.disabled = false;
             btn.innerText = "Enviar Registro";
         });
