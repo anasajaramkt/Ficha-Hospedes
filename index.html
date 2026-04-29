@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Hóspede / Guest Registration</title>
+    <title>Ficha de Hóspede / Guest Registration</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9ecef; padding: 20px; color: #333; }
-        .container { max-width: 650px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: auto; }
-        h2 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; }
-        .section-title { background: #f8f9fa; padding: 10px; margin-top: 25px; font-weight: bold; border-left: 4px solid #0056b3; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
+        .container { max-width: 650px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: auto; }
+        h2 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; text-align: center; }
+        .section-title { background: #f8f9fa; padding: 10px; margin-top: 25px; font-weight: bold; border-left: 4px solid #0056b3; font-size: 15px; }
         label { display: block; margin-top: 15px; font-weight: 600; font-size: 14px; }
         input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
         .flex-container { display: flex; gap: 15px; }
         .flex-item { flex: 1; }
-        button { background-color: #28a745; color: white; border: none; padding: 18px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        button { background-color: #28a745; color: white; border: none; padding: 18px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
         button:hover { background-color: #218838; }
-        .footer-text { font-size: 12px; color: #6c757d; margin-top: 25px; text-align: center; line-height: 1.5; }
+        .privacy-note { font-size: 12px; color: #666; margin-top: 20px; line-height: 1.4; padding: 10px; background: #fffde7; border-radius: 5px; border: 1px solid #fff59d; }
     </style>
 </head>
 <body>
@@ -23,9 +23,9 @@
 <div class="container">
     <h2>Ficha de Hóspede <br><small style="font-size: 0.6em; color: #666;">Guest Registration Form</small></h2>
     
-    <form action="https://formsubmit.co/info.riaendlesssouth@gmail.com" method="POST">
+    <form action="https://formsubmit.co/seu-email@exemplo.com" method="POST">
         
-        <input type="hidden" name="_subject" value="Novo Registro de Hóspede!">
+        <input type="hidden" name="_subject" value="Novo Registro de Hóspede Recebido!">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
 
@@ -55,22 +55,22 @@
 
         <div class="flex-container">
             <div class="flex-item">
-                <label>País de Emissão / Country:</label>
+                <label>País de Emissão / Issuing Country:</label>
                 <input type="text" name="Pais_Emissao" required>
             </div>
             <div class="flex-item">
-                <label>Validade / Expiry Date:</label>
-                <input type="date" name="Validade_Doc" required>
+                <label>Data de Validade / Expiry Date:</label>
+                <input type="date" name="Validade_Documento" required>
             </div>
         </div>
 
-        <div class="section-title">Morada de Residência / Home Address</div>
-        
-        <label>Morada Completa / Full Address:</label>
-        <textarea name="Morada_Residencia" rows="2" required placeholder="Rua, Número, Cidade e Código Postal do seu país de origem"></textarea>
+        <div class="section-title">Morada de Residência Permanente / Home Address</div>
 
-        <div class="section-title">Período da Estadia / Stay Dates</div>
-        
+        <label>Morada Completa (Rua, Cidade, País) / Full Address:</label>
+        <textarea name="Morada_Permanente" rows="2" required placeholder="A morada onde vive habitualmente no seu país de origem"></textarea>
+
+        <div class="section-title">Período da Estadia no AL / Stay Dates</div>
+
         <div class="flex-container">
             <div class="flex-item">
                 <label>Data de Chegada / Check-in:</label>
@@ -81,13 +81,15 @@
                 <input type="date" name="CheckOut_no_AL" required>
             </div>
         </div>
-        
-        <button type="submit">Enviar Registro / Submit</button>
 
-        <div class="footer-text">
-            Conforme requisitos legais do SEF/AIMA. <br>
-            <em>According to legal requirements for local accommodation.</em>
+        <div class="privacy-note">
+            <strong>Privacidade / Privacy:</strong><br>
+            Os dados recolhidos são obrigatórios por lei (SEF/AIMA) e destinam-se apenas ao registo legal da sua estadia. Não serão usados para fins comerciais.<br>
+            <em>The data collected is mandatory by law for registration with authorities. It will not be used for commercial purposes.</em>
         </div>
+
+        <button type="submit">Enviar Registro / Submit Registration</button>
+
     </form>
 </div>
 
