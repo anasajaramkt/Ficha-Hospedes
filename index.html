@@ -1,95 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de Hóspede / Guest Registration</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
-        .container { max-width: 600px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: auto; }
-        h2 { color: #0056b3; border-bottom: 3px solid #0056b3; padding-bottom: 10px; margin-top: 0; text-align: center; }
-        .section-title { background: #f8f9fa; padding: 10px; margin-top: 25px; font-weight: bold; border-left: 4px solid #0056b3; font-size: 15px; }
-        label { display: block; margin-top: 15px; font-weight: 600; font-size: 14px; }
-        input, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        .flex-container { display: flex; gap: 15px; }
-        .flex-item { flex: 1; }
-        button { background-color: #28a745; color: white; border: none; padding: 18px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
-        button:hover { background-color: #218838; }
-        button:disabled { background-color: #ccc; cursor: not-allowed; }
-        #mensagem-sucesso { display: none; text-align: center; padding: 30px; background: #d4edda; color: #155724; border-radius: 12px; border: 1px solid #c3e6cb; margin-top: 20px; }
-        .privacy-note { font-size: 13px; color: #555; margin-top: 25px; line-height: 1.5; padding: 12px; background: #fdfdfd; border: 1px solid #eee; border-radius: 6px; }
-    </style>
-</head>
-<body>
-
-<div class="container" id="form-container">
-    <h2>Ficha de Hóspede <br><small style="font-size: 0.6em; color: #666;">Guest Registration Form</small></h2>
-    
-    <form id="fichaHospede">
-        <div class="section-title">Dados Pessoais / Personal Details</div>
-        <label>Nome Completo / Full Name:</label>
-        <input type="text" id="nome" required>
-
-        <label>E-mail:</label>
-        <input type="email" id="email" required>
-
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>Nacionalidade / Nationality:</label>
-                <input type="text" id="nacionalidade" required>
-            </div>
-            <div class="flex-item">
-                <label>Data de Nascimento / Birth:</label>
-                <input type="date" id="data_nasc" required>
-            </div>
-        </div>
-
-        <div class="section-title">Documento de Identificação / ID Details</div>
-        <label>Nº Documento (CC ou Passaporte) / ID Number:</label>
-        <input type="text" id="documento" required>
-
-        <div class="flex-container">
-            <div class="flex-item">
-                <label>País Emissão / Country:</label>
-                <input type="text" id="pais_emissao" required>
-            </div>
-            <div class="flex-item">
-                <label>Validade / Expiry Date:</label>
-                <input type="date" id="validade_doc" required>
-            </div>
-        </div>
+<!-- ... (resto do código anterior igual) ... -->
 
         <div class="section-title">Morada de Residência Permanente / Home Address</div>
-        <label>Morada Completa / Full Address:</label>
-        <textarea id="morada" rows="2" required></textarea>
+        
+        <label>Rua e Número / Street Address:</label>
+        <input type="text" id="morada" placeholder="Ex: Rua das Flores, 123" required>
 
-        <div class="section-title">Período da Estadia no AL / Stay Dates</div>
         <div class="flex-container">
             <div class="flex-item">
-                <label>Data de Chegada / Check-in:</label>
-                <input type="date" id="checkin" required>
+                <label>Cidade / City:</label>
+                <input type="text" id="cidade" required>
             </div>
             <div class="flex-item">
-                <label>Data de Saída / Check-out:</label>
-                <input type="date" id="checkout" required>
+                <label>Código Postal / Zip Code:</label>
+                <input type="text" id="cod_postal" required>
             </div>
         </div>
 
-        <div class="privacy-note">
-            <strong>Privacidade / Privacy:</strong><br>
-            Os dados recolhidos destinam-se exclusivamente ao registo legal (SEF/AIMA) e não serão partilhados para outros fins.<br>
-            <em>Data collected is exclusively for legal registration (SEF/AIMA) and will not be shared for other purposes.</em>
-        </div>
+        <label>País de Residência / Country of Residence:</label>
+        <input type="text" id="pais_residencia" required>
 
-        <button type="button" id="btnEnviar" onclick="submitForm()">Enviar Registro / Submit</button>
-    </form>
-</div>
-
-<div id="mensagem-sucesso" class="container">
-    <h2>✅ Enviado! / Success!</h2>
-    <p>Os seus dados foram registados com sucesso na nossa base de dados.</p>
-    <p><em>Your data has been successfully registered. Thank you!</em></p>
-</div>
+        <div class="section-title">Período da Estadia no AL / Stay Dates</div>
+<!-- ... (restante do formulário igual) ... -->
 
 <script>
     function submitForm() {
@@ -97,7 +28,9 @@
         const form = document.getElementById('form-container');
         const sucesso = document.getElementById('mensagem-sucesso');
 
-        const ids = ['nome', 'email', 'nacionalidade', 'data_nasc', 'documento', 'pais_emissao', 'validade_doc', 'morada', 'checkin', 'checkout'];
+        // LISTA DE IDS ATUALIZADA
+        const ids = ['nome', 'email', 'nacionalidade', 'data_nasc', 'documento', 'pais_emissao', 'validade_doc', 'morada', 'cidade', 'cod_postal', 'pais_residencia', 'checkin', 'checkout'];
+        
         for (let id of ids) {
             if (!document.getElementById(id).value) {
                 alert('Por favor, preencha todos os campos obrigatórios.');
@@ -117,11 +50,14 @@
             pais_emissao: document.getElementById('pais_emissao').value,
             validade_doc: document.getElementById('validade_doc').value,
             morada: document.getElementById('morada').value,
+            cidade: document.getElementById('cidade').value,
+            cod_postal: document.getElementById('cod_postal').value,
+            pais_residencia: document.getElementById('pais_residencia').value,
             checkin: document.getElementById('checkin').value,
             checkout: document.getElementById('checkout').value
         };
 
-        const url = 'https://script.google.com/macros/s/AKfycbyBqXsGqWAERr2GWjMTk7o4xqZuW2qT5FMC8A_G6pW_l26ZtrzmjvqzceHCmsG0qL5Y/exec';
+        const url = 'https://script.google.com/macros/s/AKfycbwKFELO9Et-WNlR5AwyCz7b-P7283qm5gtzZjfScuwLEaDpXjcS4q1vx3WNw5cNzwAI/exec';
 
         fetch(url, {
             method: 'POST',
@@ -139,6 +75,3 @@
         });
     }
 </script>
-
-</body>
-</html>
